@@ -28,14 +28,23 @@ def home():
 def show():
     html = "<h1 style='text-align:center; color:#5f27cd; margin:70px; font-size:55px;'>Our Beautiful Places</h1><div style='display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:30px; padding:40px;'>"
     for p in places:
-        html += f"<div style='background:white; border-radius:30px; padding:30px; box-shadow:0 25px 50px rgba(0,0,0,0.15); text-align:center;'>
-        <h2 style='color:#ff6b6b;'>{p.get('PLACE','')}</h2>
-        <h3 style='color:#54a0ff;'>{p.get('COUNTRY','')}</h3>
-        <p><b>Language:</b> {p.get('LANGUAGE','')}</p>
-        <p><b>Timezone:</b> {p.get('TIMEZONE','')}</p>
-        <p><b>Specialities:</b> {p.get('SPECIALITIES','')}</p>
-        <img src='{p.get('IMAGES','')}' style='width:100%; border-radius:20px; margin-top:15px;'>
-    </div>"
+        
+        html += f"""
+        <div style='background:white; border-radius:30px; padding:30px; 
+        box-shadow:0 25px 50px rgba(0,0,0,0.15); text-align:center;'>
+
+            <h2 style='color:#ff6b6b;'>{p.get('PLACE','')}</h2>
+            <h3 style='color:#54a0ff;'>{p.get('COUNTRY','')}</h3>
+
+            <p><b>Language:</b> {p.get('LANGUAGE','')}</p>
+            <p><b>Timezone:</b> {p.get('TIMEZONE','')}</p>
+            <p><b>Specialities:</b> {p.get('SPECIALITIES','')}</p>
+
+            <img src="{p.get('IMAGES','')}" 
+            style="width:100%; border-radius:20px; margin-top:15px;">
+        </div>
+        """
+
 
     return html + '</div><div style="text-align:center; margin:70px;"><a href="/" style="padding:20px 60px; background:#feca57; color:white; border-radius:60px; text-decoration:none; font-size:26px;">Home</a></div>'
 
