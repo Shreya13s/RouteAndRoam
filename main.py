@@ -28,7 +28,7 @@ def home():
 def show():
     html = "<h1 style='text-align:center; color:#5f27cd; margin:70px; font-size:55px;'>Our Beautiful Places</h1><div style='display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:30px; padding:40px;'>"
     for p in places:
-    html += f"<div style='background:white; border-radius:30px; padding:30px; box-shadow:0 25px 50px rgba(0,0,0,0.15); text-align:center;'>
+        html += f"<div style='background:white; border-radius:30px; padding:30px; box-shadow:0 25px 50px rgba(0,0,0,0.15); text-align:center;'>
         <h2 style='color:#ff6b6b;'>{p.get('PLACE','')}</h2>
         <h3 style='color:#54a0ff;'>{p.get('COUNTRY','')}</h3>
         <p><b>Language:</b> {p.get('LANGUAGE','')}</p>
