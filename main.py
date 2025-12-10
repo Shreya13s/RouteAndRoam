@@ -50,7 +50,7 @@ def home():
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('/static/images/RouteAndRoamBG.jpg');
+            background-image: url('https://github.com/prekshanehru13/RouteAndRoam/blob/main/RouteAndRoamBG.jpg');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
