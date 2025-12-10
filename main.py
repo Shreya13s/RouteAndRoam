@@ -16,11 +16,78 @@ except:
 @app.route('/')
 def home():
     return '''
-    <div style="min-height:100vh; background:linear-gradient(120deg,#84fab0 0%,#8fd3f4 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:'Comic Sans MS',cursive;">
-        <h1 style="font-size:80px; color:white; text-shadow:0 0 30px #ff9ff3;">RouteAndRoam</h1>
-        <p style="font-size:30px; color:white; margin-bottom:50px;">Let's explore the world together!</p>
-        <a href="/places" style="padding:20px 60px; background:#ff9ff3; color:white; border-radius:60px; font-size:28px; text-decoration:none; margin:20px; box-shadow:0 20px 40px rgba(255,159,243,0.6);">Destinations</a>
-        <a href="/currency" style="padding:20px 60px; background:#54a0ff; color:white; border-radius:60px; font-size:28px; text-decoration:none;">Currency Magic</a>
+    <div style="
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 220px;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    ">
+
+        <!-- Blurred background layer -->
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/images/RouteAndRoamBG.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(18px) brightness(0.8);
+            transform: scale(1.2);     /* avoid blur edges */
+            z-index: -2;
+        "></div>
+
+        <!-- Main image (full but not zoomed) -->
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/images/RouteAndRoamBG.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+        "></div>
+
+        <!-- Buttons -->
+        <div style="
+            display: flex;
+            gap: 40px;
+            z-index: 5;
+        ">
+            <a href="/places" style="
+                padding: 20px 60px;
+                background: #FF4500;
+                color: white;
+                border-radius: 50px;
+                font-size: 28px;
+                font-weight: 600;
+                text-decoration: none;
+                text-align: center;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            ">Destinations</a>
+
+            <a href="/currency" style="
+                padding: 20px 60px;
+                background: #FF4500;
+                color: white;
+                border-radius: 50px;
+                font-size: 28px;
+                font-weight: 600;
+                text-decoration: none;
+                text-align: center;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            ">Currency Exchange</a>
+        </div>
+
     </div>
     '''
 
