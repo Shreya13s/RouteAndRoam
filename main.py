@@ -115,74 +115,61 @@ def show():
 
     return html + '</div><div style="text-align:center; margin:70px;"><a href="/" style="padding:20px 60px; background:#feca57; color:white; border-radius:60px; text-decoration:none; font-size:26px;">Home</a></div>'
 
-# ─────────────────────────────────────────────────────────────
-# PRIYAL'S STARTS HERE →  CURRENCY CONVERTER 
-# ─────────────────────────────────────────────────────────────
+# ================================================
+# PRIYAL SINGH'S CURRENCY CONVERTER STARTS
+# ====================================
 @app.route('/currency', methods=['GET','POST'])
-def curr():
+def currency():
+    currencies = ["INR","USD","EUR","GBP","JPY","AED","THB","CNY","KRW","SGD","AUD","CAD","CHF","BRL","PHP","VND","IDR","MYR"]
+    options = "".join(f"<option value='{c}'>{c}</option>" for c in currencies)
+
     if request.method == 'POST':
         try:
-            a = float(request.form['a'])
+            amount = float(request.form['amount'])
             f = request.form['f']
             t = request.form['t']
             rate = requests.get(f"https://api.exchangerate-api.com/v4/latest/{f}").json()['rates'][t]
-            result = a * rate
+            result = amount * rate
 
             return f'''
-            <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(135deg,#ffe6e6,#fff0f5);">
-                <div style="background:#fff; border-radius:25px; padding:60px 80px; box-shadow:0 15px 40px rgba(0,0,0,0.15); max-width:700px; width:90%; text-align:center; position:relative;">
-                    <div style="font-size:50px; margin-bottom:20px;">💰💱</div>
-                    <h1 style="font-size:50px; color:#e63946; margin-bottom:15px;">
-                        {a:,.2f} {f} = {result:,.2f} {t}
-                    </h1>
-                    <p style="font-size:22px; color:#555; margin-bottom:40px;">
-                        🔹 Exchange Rate: 1 {f} = {rate:.4f} {t}
-                    </p>
-
-                    <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
-                        <a href="/currency" style="padding:15px 45px; background:#e63946; color:white; border-radius:12px; text-decoration:none; font-size:18px; box-shadow:0 5px 15px rgba(230,57,70,0.3); transition:0.3s;">Convert Again 🔄</a>
-                        <a href="/" style="padding:15px 45px; background:#6c757d; color:white; border-radius:12px; text-decoration:none; font-size:18px; box-shadow:0 5px 15px rgba(108,117,125,0.3); transition:0.3s;">Home 🏠</a>
+            <div style="min-height:100vh;background:linear-gradient(135deg,#ffb300,#ff9800);display:flex;align-items:center;justify-content:center;font-family:system-ui;">
+                <audio autoplay><source src="https://assets.mixkit.co/sfx/preview/mixkit-coin-cha-ching-2108.mp3"></audio>
+                <div style="background:white;padding:60px 100px;border-radius:30px;box-shadow:0 25px 60px rgba(0,0,0,0.2);text-align:center;width:90%;max-width:600px;">
+                    <h1 style="font-size:48px;color:#e65100;margin:20px 0;">{amount:,.0f} {f}</h1>
+                    <div style="font-size:60px;color:#ff6f00;margin:30px 0;">↓</div>
+                    <h1 style="font-size:60px;color:#e65100;margin:20px 0;">{result:,.2f} {t}</h1>
+                    <p style="font-size:24px;color:#e65100;margin:30px 0;">Rate: 1 {f} = {rate:.4f} {t}</p>
+                    <h2 style="font-size:44px;color:#ff6f00;margin:40px 0;">CHA-CHING!</h2>
+                    <div>
+                        <a href="/currency" style="padding:15px 60px;background:#ff6f00;color:white;border-radius:30px;font-size:22px;margin:10px;">Again</a>
+                        <a href="/" style="padding:15px 60px;background:#333;color:white;border-radius:30px;font-size:22px;margin:10px;">Home</a>
                     </div>
-
-                    <p style="font-size:14px; color:#999; margin-top:30px;">Made by Priyal Singh</p>
                 </div>
             </div>
             '''
         except:
-            return '<h1 style="text-align:center; padding:200px; color:#ff4c4c; font-size:60px;">Oops! Try again ⚠️</h1><a href="/currency" style="font-size:30px;">Back</a>'
+            return "<h1 style='color:red;text-align:center;padding-top:40vh;font-size:40px;'>Error! Check amount</h1><a href='/currency'>Back</a>"
 
-    # MAIN PROFESSIONAL + COLOURFUL CONVERTER PAGE
-    return '''
-    <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(135deg,#ffe6e6,#fff0f5);">
-        <div style="background:#fff; border-radius:25px; padding:60px 80px; box-shadow:0 20px 60px rgba(0,0,0,0.1); max-width:700px; width:90%; text-align:center; position:relative;">
-            <div style="font-size:50px; margin-bottom:20px;">💰💱</div>
-            <h1 style="font-size:45px; color:#e63946; margin-bottom:15px;">Currency Converter</h1>
-            <p style="font-size:20px; color:#555; margin-bottom:40px;">Convert any currency quickly and accurately ✨</p>
-
-            <form method="post" style="display:flex; flex-direction:column; gap:25px;">
-                <input name="a" value="1000" placeholder="Enter amount" style="padding:18px; border-radius:12px; border:1px solid #ccc; font-size:20px; width:100%; outline:none;">
-
-                <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
-                    <select name="f" style="padding:15px; border-radius:12px; font-size:18px; border:1px solid #ccc;">
-                        <option>INR</option><option>USD</option><option>EUR</option><option>GBP</option><option>AED</option><option>THB</option><option>SGD</option><option>JPY</option>
-                    </select>
-                    <select name="t" style="padding:15px; border-radius:12px; font-size:18px; border:1px solid #ccc;">
-                        <option>USD</option><option>INR</option><option>EUR</option><option>GBP</option><option>AED</option><option>THB</option><option>SGD</option><option>JPY</option>
-                    </select>
+    # MAIN PAGE – COMPACT & BEAUTIFUL
+    return f'''
+    <div style="min-height:100vh;background:linear-gradient(135deg,#ffb300,#ff9800);display:flex;align-items:center;justify-content:center;font-family:system-ui;">
+        <div style="background:white;padding:70px 90px;border-radius:30px;box-shadow:0 25px 60px rgba(0,0,0,0.2);text-align:center;width:90%;max-width:600px;">
+            <h1 style="font-size:48px;color:#e65100;margin-bottom:30px;">Currency Converter</h1>
+            <form method="post">
+                <input name="amount" value="1000" placeholder="Amount" style="padding:20px;width:100%;border-radius:20px;border:2px solid #ff6f00;font-size:30px;text-align:center;margin:30px 0;background:#fff8e1;">
+                <div style="display:flex;gap:30px;justify-content:center;margin:50px 0;">
+                    <select name="f" style="padding:20px;border-radius:20px;font-size:26px;background:#ff8a65;color:white;border:none;width:48%;">{options}</select>
+                    <select name="t" style="padding:20px;border-radius:20px;font-size:26px;background:#ff7043;color:white;border:none;width:48%;">{options}</select>
                 </div>
-
-                <button type="submit" style="padding:18px 0; background:#e63946; color:white; border:none; border-radius:12px; font-size:20px; cursor:pointer; transition:0.3s;">Convert 💹</button>
+                <button style="padding:20px 120px;background:#e65100;color:white;border:none;border-radius:30px;font-size:32px;cursor:pointer;">CONVERT NOW</button>
             </form>
-
-            <p style="font-size:14px; color:#999; margin-top:30px;">Made by Priyal Singh</p>
+            <p style="margin-top:60px;font-size:18px;color:#666;">by Priyal Singh</p>
         </div>
     </div>
     '''
-
-# ─────────────────────────────────────────────────────────────
-# PRIYAL'S PART ENDS HERE
-# ─────────────────────────────────────────────────────────────
-
+# ====================================
+# PRIYAL SINGH'S CURRENCY CONVERTER ENDS
+# ====================================
 if __name__ == '__main__':
     print("RouteAndRoam started → Your currency converter is now the CUTEST EVER!")
     app.run(debug=True)
