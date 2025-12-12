@@ -1,4 +1,4 @@
-from module4 import PlacesModule
+from module3 import PlacesModule
 pm= PlacesModule(r"C:\Users\mgpre\Documents\python\places.csv")
 mod = PlacesModule(r"C:\Users\mgpre\Documents\python\places.csv")
 
