@@ -59,3 +59,6 @@ class PlacesModule:
             img.show()
         except Exception as e:
             print("Could not load image:", e)
+
+        
+          
